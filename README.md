@@ -501,6 +501,12 @@ Choix volontaires :
   et se mettent côte à côte à partir de `md` : le champ (`col-md`) prend alors
   toute la place restante, puis est limité à la moitié de la largeur à partir
   de `lg` (`col-lg-6`).
+- **Barre de recherche fixe** : sur `<app-barre-recherche>`, la classe
+  `sticky-top` la garde collée en haut de l'écran pendant que les résultats
+  défilent. `bg-body` lui donne un fond opaque (sinon les cartes se verraient
+  au travers), `border-bottom` la sépare des résultats. Pas besoin de zone de
+  défilement à hauteur fixe : c'est la page entière qui défile, ce qui reste
+  naturel sur mobile.
 - **Trois règles CSS maison seulement**, là où Bootstrap n'a pas de classe :
   - `.extrait` (`CartePlat`) coupe les instructions après 4 lignes
     (Bootstrap ne propose que `text-truncate`, qui coupe après une ligne) ;

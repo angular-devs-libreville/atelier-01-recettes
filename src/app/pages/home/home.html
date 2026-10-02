@@ -1,6 +1,8 @@
-<!-- $event contient le texte émis par la barre de recherche. -->
+<!-- $event contient le texte émis par la barre de recherche.
+     sticky-top : la barre reste collée en haut de l'écran quand on fait défiler.
+     bg-body lui donne un fond opaque, sinon les cartes se verraient au travers. -->
 <app-barre-recherche
-  class="d-block mb-4"
+  class="d-block sticky-top bg-body py-3 mb-3 border-bottom"
   [valeur]="saisie()"
   (saisie)="saisie.set($event)"
   (reinitialiser)="saisie.set('')"
