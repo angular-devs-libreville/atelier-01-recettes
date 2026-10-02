@@ -1,0 +1,43 @@
+<article class="card h-100 shadow-sm">
+  <!-- ratio-1x1 réserve un carré avant l'arrivée de la photo :
+       la carte ne « saute » pas quand l'image s'affiche. -->
+  <div class="ratio ratio-1x1 rounded-top overflow-hidden">
+    @if (!imageChargee()) {
+      <!-- Skeleton Bootstrap : un bloc gris qui pulse. -->
+      <div class="placeholder-glow" aria-hidden="true">
+        <span class="placeholder w-100 h-100"></span>
+      </div>
+    }
+    <!-- L'image reste dans la page (invisible) pour que le navigateur la télécharge.
+         (error) aussi : si la photo ne vient pas, on arrête le skeleton et le texte alt s'affiche. -->
+    <img
+      [src]="plat().strMealThumb"
+      [alt]="plat().strMeal"
+      class="object-fit-cover"
+      [class.opacity-0]="!imageChargee()"
+      loading="lazy"
+      (load)="imageChargee.set(true)"
+      (error)="imageChargee.set(true)"
+    />
+  </div>
+  <div class="card-body">
+    <h2 class="card-title h5">
+      <!-- stretched-link (Bootstrap) étend le lien à toute la carte.
+           queryParamsHandling="preserve" emporte le ?q= vers la page de détail. -->
+      <a
+        [routerLink]="['/recette', plat().idMeal]"
+        queryParamsHandling="preserve"
+        class="stretched-link link-body-emphasis text-decoration-none"
+      >
+        {{ plat().strMeal }}
+      </a>
+    </h2>
+    <p class="mb-2">
+      <span class="badge text-bg-secondary me-1">{{ plat().strArea }}</span>
+      <span class="badge text-bg-warning">{{ plat().strCategory }}</span>
+    </p>
+    <p class="card-text small text-body-secondary extrait">
+      {{ plat().strInstructions }}
+    </p>
+  </div>
+</article>

@@ -1,0 +1,25 @@
+<!-- preventDefault() : sans lui, Entrée rechargerait la page.
+     (reset) se déclenche quand on clique sur le bouton type="reset". -->
+<form
+  class="row g-2 justify-content-center"
+  (submit)="$event.preventDefault()"
+  (reset)="reinitialiser.emit()"
+>
+  <div class="col-12 col-md col-lg-6">
+    <!-- (input) se déclenche à chaque caractère tapé ou effacé.
+         #champ donne accès à l'élément <input> dans le template. -->
+    <input
+      #champ
+      type="search"
+      class="form-control form-control-lg"
+      placeholder="Ex. : fish, chicken, cake…"
+      aria-label="Nom du plat"
+      [value]="valeur()"
+      (input)="saisie.emit(champ.value)"
+    />
+  </div>
+  <div class="col-12 col-md-auto">
+    <!-- type="reset" vide le champ tout seul, sans code. -->
+    <button type="reset" class="btn btn-outline-secondary btn-lg w-100">Réinitialiser</button>
+  </div>
+</form>

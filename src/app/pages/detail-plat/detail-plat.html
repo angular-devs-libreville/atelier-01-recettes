@@ -1,0 +1,59 @@
+<!-- queryParamsHandling="preserve" garde le ?q= de l'URL : la recherche est retrouvée. -->
+<a routerLink="/" queryParamsHandling="preserve" class="btn btn-outline-secondary mb-4">
+  ← Retour à la recherche
+</a>
+
+@if (reponse.isLoading()) {
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement…</span>
+    </div>
+  </div>
+} @else if (reponse.error()) {
+  <div class="alert alert-danger d-flex align-items-center gap-3" role="alert">
+    <span class="me-auto">Impossible de joindre TheMealDB. Vérifiez votre connexion.</span>
+    <button type="button" class="btn btn-outline-danger btn-sm" (click)="reponse.reload()">
+      Réessayer
+    </button>
+  </div>
+} @else if (plat(); as plat) {
+  <!-- Mobile : photo puis texte. À partir de md : photo à gauche, texte à droite. -->
+  <article class="row g-4">
+    <div class="col-12 col-md-5">
+      <img [src]="plat.strMealThumb" [alt]="plat.strMeal" class="img-fluid rounded shadow-sm" />
+    </div>
+
+    <div class="col-12 col-md-7">
+      <h2 class="display-6">{{ plat.strMeal }}</h2>
+      <p>
+        <span class="badge text-bg-secondary me-1">{{ plat.strArea }}</span>
+        <span class="badge text-bg-warning">{{ plat.strCategory }}</span>
+      </p>
+
+      <h3 class="h5 mt-4">Ingrédients</h3>
+      <ul class="list-group mb-4">
+        <!-- track $index : un même ingrédient peut apparaître deux fois. -->
+        @for (ligne of ingredients(); track $index) {
+          <li class="list-group-item d-flex justify-content-between gap-3">
+            <span>{{ ligne.ingredient }}</span>
+            <span class="text-body-secondary text-end">{{ ligne.mesure }}</span>
+          </li>
+        }
+      </ul>
+
+      @if (plat.strYoutube) {
+        <!-- rel="noopener" : bonne pratique pour un lien qui ouvre un nouvel onglet. -->
+        <a [href]="plat.strYoutube" target="_blank" rel="noopener" class="btn btn-danger">
+          Voir la vidéo
+        </a>
+      }
+    </div>
+
+    <div class="col-12">
+      <h3 class="h5">Préparation</h3>
+      <p class="instructions">{{ plat.strInstructions }}</p>
+    </div>
+  </article>
+} @else {
+  <div class="alert alert-warning" role="status">Cette recette n'existe pas.</div>
+}

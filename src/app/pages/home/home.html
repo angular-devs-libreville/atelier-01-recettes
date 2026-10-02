@@ -1,0 +1,45 @@
+<!-- $event contient le texte émis par la barre de recherche. -->
+<app-barre-recherche
+  class="d-block mb-4"
+  [valeur]="saisie()"
+  (saisie)="saisie.set($event)"
+  (reinitialiser)="saisie.set('')"
+/>
+
+@if (reponse.isLoading()) {
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement…</span>
+    </div>
+  </div>
+} @else if (reponse.error()) {
+  <div class="alert alert-danger d-flex align-items-center gap-3" role="alert">
+    <span class="me-auto">Impossible de joindre TheMealDB. Vérifiez votre connexion.</span>
+    <!-- reload() relance la même requête. -->
+    <button type="button" class="btn btn-outline-danger btn-sm" (click)="reponse.reload()">
+      Réessayer
+    </button>
+  </div>
+} @else if (recherche() === '') {
+  <p class="text-center text-body-secondary">
+    Commencez à taper : la recherche part dès que vous faites une pause.
+  </p>
+} @else {
+  <p class="text-body-secondary">{{ plats().length }} résultat(s) pour « {{ recherche() }} »</p>
+
+  <!-- 1 colonne sur mobile, 2 sur tablette, 3 puis 4 sur grand écran. -->
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+    @for (plat of plats(); track plat.idMeal) {
+      <div class="col">
+        <app-carte-plat [plat]="plat" />
+      </div>
+    } @empty {
+      <!-- w-100 : sinon ce bloc prendrait la largeur d'une seule colonne. -->
+      <div class="w-100">
+        <div class="alert alert-info" role="status">
+          Aucune recette ne correspond à « {{ recherche() }} ».
+        </div>
+      </div>
+    }
+  </div>
+}

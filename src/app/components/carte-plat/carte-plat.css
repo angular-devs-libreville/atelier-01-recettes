@@ -1,0 +1,13 @@
+/* Bootstrap ne sait pas couper un texte après N lignes : on le fait ici. */
+.extrait {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+}
+
+/* Bootstrap n'a pas de classe de transition : apparition en fondu de la photo. */
+img {
+  transition: opacity 0.3s;
+}

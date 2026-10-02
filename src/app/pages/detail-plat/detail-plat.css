@@ -1,0 +1,4 @@
+/* Garde les retours à la ligne envoyés par l'API. Bootstrap n'a pas de classe pour ça. */
+.instructions {
+  white-space: pre-line;
+}
