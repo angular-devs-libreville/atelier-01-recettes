@@ -3,7 +3,8 @@
 Petite application Angular de recherche de recettes, écrite comme support
 d'atelier pour débutants (Angular Devs Libreville).
 
-**Démo en ligne : <https://atelier-01-recettes.vercel.app/>**
+- **Démo en ligne : <https://atelier-01-recettes.vercel.app/>**
+- **Code source : <https://github.com/angular-devs-libreville/atelier-01-recettes>**
 
 On tape le nom d'un plat (en anglais : `fish`, `chicken`, `cake`…) et, dès
 qu'on marque une pause de 400 ms, l'application affiche les recettes trouvées sous forme de cartes : photo, nom, pays d'origine, catégorie
@@ -47,8 +48,8 @@ Prérequis : [Node.js](https://nodejs.org) 22.22+, 24.15+ ou 26+ (exigence d'Ang
 prenez la version LTS).
 
 ```bash
-git clone <url-du-depot>
-cd recettes
+git clone https://github.com/angular-devs-libreville/atelier-01-recettes.git
+cd atelier-01-recettes
 npm install
 npm start
 ```
