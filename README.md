@@ -3,6 +3,8 @@
 Petite application Angular de recherche de recettes, écrite comme support
 d'atelier pour débutants (Angular Devs Libreville).
 
+**Démo en ligne : <https://atelier-01-recettes.vercel.app/>**
+
 On tape le nom d'un plat (en anglais : `fish`, `chicken`, `cake`…) et, dès
 qu'on marque une pause de 400 ms, l'application affiche les recettes trouvées sous forme de cartes : photo, nom, pays d'origine, catégorie
 et début des instructions. Un clic sur une carte ouvre la **page de détail**
